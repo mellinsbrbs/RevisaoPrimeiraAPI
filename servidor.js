@@ -1,28 +1,34 @@
 const express = require('express');
 
 const app = express();
-let Alunos = [
-    {id: 1, nome: "Mel", idade: 16},
-    {id: 2, nome: "Ana", idade: 17},
-    {id: 3, nome: "João", idade: 18},
-    {id: 4, nome: "Maria", idade: 19},
-    {id: 5, nome: "Pedro", idade: 20},
-];
+app.use(express.json());
 
-app.get("/", (req, res) => {
+let ALUNOS = [
+  { id: 1, nome: "Bernardo", curso: "Desenvolvimento de sistemas" },
+  { id: 2, nome: "Camily", curso: "Redes de computadores" },
+  { id: 3, nome: "Kaue", curso: "Banco de dados" },
+  { id: 4, nome: "Maria", curso: "Administração" },
+  { id: 5, nome: "Marjory", curso: "Desenvolvimento de sistemas" },
+]; 
 
+app.get("/",(req,res)=>{
     res.json({
-        mensagem: "API Alunos funcionando"
+        message: "API alunos funcionando"
+
     })
-})
+}) 
 
-app.get("/alunos", (req, res) => {
+app.get("/alunos",(req,res) =>{
     res.json(ALUNOS);
-})
+});
 
-const PORTA = 3000
-app.listen(PORTA, () => {
+app.post("/alunos/cadastrar", (req,res) =>{
+    console.log(req.body);
+});
+
+
+const PORTA = 3000;
+app.listen(PORTA,()=>{
     console.log("Servidor iniciado com sucesso");
     console.log(`http://localhost:${PORTA}`);
-
 })
