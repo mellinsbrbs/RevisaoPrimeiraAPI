@@ -16,6 +16,10 @@ app.get("/", (req, res) => {
     })
 })
 
+app.get("/alunos", (req, res) => {
+    res.json(ALUNOS);
+})
+
 const PORTA = 3000
 app.listen(PORTA, () => {
     console.log("Servidor iniciado com sucesso");
