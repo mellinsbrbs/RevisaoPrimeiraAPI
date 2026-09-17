@@ -22,8 +22,21 @@ app.get("/alunos",(req,res) =>{
     res.json(ALUNOS);
 });
 
-app.post("/alunos/cadastrar", (req,res) =>{
-    console.log(req.body);
+app.post("/alunos/cadastrar", (req, res)=>{
+    // console.log(req.body);
+    const {nome, curso} = req.body
+    // console.log("Nome:" + nome);
+    // console.log(`Curso: ${curso}`);
+
+    const id = ALUNOS.length > 0 ? ALUNOS[ALUNOS.length - 1].id + 1 : 1;
+    // const id = ALUNOS.length > 0 ? Math.max(...ALUNOS.map(aluno => aluno.id)) + 1 : 1;
+    const novoAluno = {
+        nome : nome,
+        curso : curso,
+        id : id
+    };
+    ALUNOS.push(novoAluno);
+    res.status(201).json({msg: "Aluno cadastrado com sucesso"});
 });
 
 
