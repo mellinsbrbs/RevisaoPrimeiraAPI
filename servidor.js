@@ -56,6 +56,16 @@ app.get("/alunos/:valor", (req,res)=>{
 
 });
 
+app.put("/alunos/:id", (req, res)=>{
+    const valor = Number(req.params.id);
+    const {nome, curso} = req.body;
+
+    if(!nome || !curso){
+        return res.status(400).json({msg: "Nome e curso são obrigatórios"});
+    }
+
+})    
+    
 const PORTA = 3000;
 app.listen(PORTA,()=>{
     console.log("Servidor iniciado com sucesso");
